@@ -1,4 +1,4 @@
-
+﻿
 import base64
 import copy
 import io
@@ -477,7 +477,7 @@ def _extract_balanced_json_object(text: str) -> Optional[str]:
 
 def _cleanup_json_text(text: str) -> str:
     text = _strip_markdown_fences(text)
-    text = text.replace("﻿", "").strip()
+    text = text.replace("ï»¿", "").strip()
     balanced = _extract_balanced_json_object(text)
     if balanced:
         text = balanced
@@ -1347,6 +1347,7 @@ class VLMSaveJSONReportNode:
         output_dir = _get_output_dir()
         filename = f"{filename_prefix}_{uuid.uuid4().hex[:8]}.json"
         path = os.path.join(output_dir, filename)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf-8") as f:
             f.write(report_json)
         return (path,)
