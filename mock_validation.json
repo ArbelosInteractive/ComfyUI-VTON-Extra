@@ -1,0 +1,17 @@
+{
+  "face_score": 0.83,
+  "garments_score": 0.77,
+  "body_score": 0.76,
+  "lighting_score": 0.81,
+  "background_score": 0.79,
+  "final_score": 0.7874,
+  "summary": "Final VTON VLM QC score: 0.7874\nRecommendation: review\nHard fail: False\nFace: 0.8300\nGarments: 0.7700\nBody: 0.7600\nLighting: 0.8100\nBackground: 0.7900",
+  "garment_debug": {
+    "mode": "mock",
+    "inventory_count": 4,
+    "label_count": 1,
+    "parsed_labels": [
+      "pants"
+    ]
+  }
+}

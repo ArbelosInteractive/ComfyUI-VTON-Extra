@@ -1,0 +1,89 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "selfie.png",
+      "upload": "image"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "collage.png",
+      "upload": "image"
+    }
+  },
+  "3": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "tryon.png",
+      "upload": "image"
+    }
+  },
+  "10": {
+    "class_type": "VLMRubricLoadNode",
+    "inputs": {
+      "collage_image": ["2", 0],
+      "rubric_path": "input/vton_vlm_rubric.json",
+      "rubric_json_override": ""
+    }
+  },
+  "11": {
+    "class_type": "VLMFaceIdentityScoreNode",
+    "inputs": {
+      "source_image": ["1", 0],
+      "tryon_image": ["3", 0],
+      "rubric": ["10", 0]
+    }
+  },
+  "12": {
+    "class_type": "VLMGarmentScoreNode",
+    "inputs": {
+      "source_image": ["1", 0],
+      "collage_image": ["2", 0],
+      "tryon_image": ["3", 0],
+      "rubric": ["10", 0]
+    }
+  },
+  "13": {
+    "class_type": "VLMBodyShapeScoreNode",
+    "inputs": {
+      "source_image": ["1", 0],
+      "tryon_image": ["3", 0],
+      "rubric": ["10", 0]
+    }
+  },
+  "14": {
+    "class_type": "VLMLightingScoreNode",
+    "inputs": {
+      "source_image": ["1", 0],
+      "tryon_image": ["3", 0],
+      "rubric": ["10", 0]
+    }
+  },
+  "15": {
+    "class_type": "VLMBackgroundScoreNode",
+    "inputs": {
+      "tryon_image": ["3", 0],
+      "rubric": ["10", 0]
+    }
+  },
+  "20": {
+    "class_type": "VTONAggregateRubricNode",
+    "inputs": {
+      "rubric": ["10", 0],
+      "face_section": ["11", 0],
+      "garments_section": ["12", 0],
+      "body_section": ["13", 0],
+      "lighting_section": ["14", 0],
+      "background_section": ["15", 0]
+    }
+  },
+  "21": {
+    "class_type": "VTONSaveJSONReportNode",
+    "inputs": {
+      "report_json": ["20", 1],
+      "filename_prefix": "vton_vlm_qc"
+    }
+  }
+}

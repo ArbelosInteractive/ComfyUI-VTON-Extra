@@ -1,0 +1,50 @@
+{
+  "version": "3.0",
+  "options": {
+    "inventory_mode": "rubric_first_collage_fallback",
+    "allow_best_guess_labels": false,
+    "use_collage_labels_when_present": true,
+    "speed_profile": "balanced",
+    "vlm": {
+      "provider": "openai",
+      "model": "gpt-4o",
+      "detail": "high",
+      "temperature": 0.0,
+      "max_output_tokens": 1400,
+      "fail_on_api_error": true,
+      "mock": true
+    }
+  },
+  "background_intent": "photoshoot in an office",
+  "lighting_model": "photoshoot lighting",
+  "vlm_overrides": {
+    "background": {"prompt_override": "", "prompt_append": ""},
+    "lighting": {"prompt_override": "", "prompt_append": ""},
+    "body_shape": {"prompt_override": "", "prompt_append": ""},
+    "garments_total": {"prompt_override": "", "prompt_append": ""},
+    "face_identity": {"prompt_override": "", "prompt_append": ""}
+  },
+  "top_level_sections": {
+    "face_identity": {"enabled": true, "weight": 0.22},
+    "garments_total": {
+      "enabled": true,
+      "weight": 0.46,
+      "hard_fail_on_missing_required": true,
+      "default_subsections": {
+        "presence": {"enabled": true, "weight": 0.35},
+        "shape_structure": {"enabled": true, "weight": 0.30},
+        "texture_color_text": {"enabled": true, "weight": 0.25},
+        "placement": {"enabled": true, "weight": 0.10}
+      },
+      "inventory": [
+        {"garment_id": "hat_01", "garment_type": "hat", "required": true, "panel_index": 0, "weight_within_garments": 0.25, "enabled": true},
+        {"garment_id": "boots_01", "garment_type": "shoes", "required": true, "panel_index": 1, "weight_within_garments": 0.25, "enabled": true},
+        {"garment_id": "shirt_01", "garment_type": "shirt", "required": true, "panel_index": 2, "weight_within_garments": 0.25, "enabled": true},
+        {"garment_id": "skirt_01", "garment_type": "skirt", "required": true, "panel_index": 3, "weight_within_garments": 0.25, "enabled": true}
+      ]
+    },
+    "body_shape": {"enabled": true, "weight": 0.14},
+    "lighting": {"enabled": true, "weight": 0.10},
+    "background": {"enabled": true, "weight": 0.08}
+  }
+}
